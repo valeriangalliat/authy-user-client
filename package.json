@@ -1,6 +1,6 @@
 {
   "name": "authy-user-client",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Access your Authy TOTP secrets! 🔐",
   "license": "Unlicense",
   "author": "Val (https://val.codejam.info)",
