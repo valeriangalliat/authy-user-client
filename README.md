@@ -341,6 +341,26 @@ or password manager with TOTP support.
 See also the equivalent [Go version](https://github.com/alexzorin/authy)
 if that's more your jam. 🍓
 
+## See also
+
+You don't want to use Authy, and actually, you don't even want to use a
+TOTP app. The only app you want is the password manager that you already
+use.
+
+But sadly your password manager don't support TOTP natively, or it's a
+paid feature and you would like to stay on the free plan?
+
+I gotcha. [TOTP with a password manager that doesn't support TOTP 😅](https://totp.vercel.app/)
+is a small website I built that allows you to store TOTP secrets (with
+support for the QR code scanning dance) in a way that they'll be treated
+like a regular username and password from your password manager's
+perspective.
+
+All you need to do is head to [totp.vercel.app](https://totp.vercel.app/)
+and let your password manager autocomplete the "user" (app) of your
+choice, and it'll generate a code for you. Everything client-side, the
+secrets never leave your password manager or your browser!
+
 ## Debugging
 
 Set `DEBUG=authy-user-client` in your environment to see all the
