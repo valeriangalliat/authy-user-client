@@ -40,7 +40,7 @@ function api (opts) {
     params = Object.assign({ api_key: authyPublicApiKey }, params)
 
     const path = typeof opts.url === 'string' ? opts.url : opts.url(params)
-    const url = new URL(`${opts.baseUrl}${path}`)
+    const url = new URL(`${baseUrl}${path}`)
 
     if (opts.search) {
       url.search = new URLSearchParams(opts.search.filter(key => key in params).map(key => [key, params[key]]))
@@ -83,55 +83,46 @@ function api (opts) {
 }
 
 const checkUserStatus = api({
-  baseUrl,
   url: p => `/users/${p.country_code}-${p.cellphone}/status`,
   search: ['api_key']
 })
 
 const createUser = api({
-  baseUrl,
   url: '/users/new',
   body: ['api_key', 'locale', 'email', 'cellphone', 'country_code']
 })
 
 const startRegistration = api({
-  baseUrl,
   url: p => `/users/${p.authy_id}/devices/registration/start`,
   body: ['api_key', 'locale', 'via', 'signature', 'device_app']
 })
 
 const completeRegistration = api({
-  baseUrl,
   url: p => `/users/${p.authy_id}/devices/registration/complete`,
   body: ['api_key', 'locale', 'pin']
 })
 
 const listDevices = api({
-  baseUrl,
   url: p => `/users/${p.authy_id}/devices`,
   search: ['api_key', 'locale', 'otp1', 'otp2', 'otp3', 'device_id']
 })
 
 const deleteDevice = api({
-  baseUrl,
   url: p => `/users/${p.authy_id}/devices/${p.delete_device_id}/delete`,
   body: ['api_key', 'locale', 'otp1', 'otp2', 'otp3', 'device_id']
 })
 
 const enableMultiDevice = api({
-  baseUrl,
   url: p => `/users/${p.authy_id}/devices/enable`,
   body: ['api_key', 'locale', 'otp1', 'otp2', 'otp3', 'device_id']
 })
 
 const disableMultiDevice = api({
-  baseUrl,
   url: p => `/users/${p.authy_id}/devices/disable`,
   body: ['api_key', 'locale', 'otp1', 'otp2', 'otp3', 'device_id']
 })
 
 const sync = api({
-  baseUrl,
   url: p => `/users/${p.authy_id}/devices/${p.device_id}/apps/sync`,
   body: ['api_key', 'locale', 'otp1', 'otp2', 'otp3', 'device_id']
 })

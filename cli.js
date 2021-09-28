@@ -193,7 +193,6 @@ async function dump () {
   })
 
   const pin = await prompt({ type: 'number', message: 'PIN:', min: 1, validate: value => value !== '' })
-
   const registrationResponse = await authy.completeRegistration({ authy_id: authyId, pin })
 
   saveState(registrationResponse)
