@@ -1,4 +1,4 @@
-# Authy user client
+# Authy user client [![npm version](http://img.shields.io/npm/v/authy-user-client.svg?style=flat-square)](https://www.npmjs.org/package/authy-user-client)
 
 > Access your Authy TOTP secrets! 🔐
 
