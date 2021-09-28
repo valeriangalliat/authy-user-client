@@ -1,0 +1,29 @@
+{
+  "name": "authy-user-client",
+  "version": "1.0.0",
+  "description": "Access your Authy TOTP secrets! 🔐",
+  "license": "Unlicense",
+  "author": "Val (https://val.codejam.info)",
+  "files": [
+    "index.js",
+    "cli.js",
+    "authy-user-client"
+  ],
+  "bin": "authy-user-client",
+  "repository": "valeriangalliat/authy-user-client",
+  "scripts": {
+    "lint": "standard --fix"
+  },
+  "dependencies": {
+    "debug": "^4.3.2",
+    "docopt": "^0.6.2",
+    "node-fetch": "^2.6.5",
+    "prompts": "^2.4.1",
+    "rfc-3548-b32": "^0.0.2",
+    "totp-generator": "github:valeriangalliat/totp-generator#date-option",
+    "uri-tag": "^1.4.0"
+  },
+  "devDependencies": {
+    "standard": "^16.0.3"
+  }
+}
