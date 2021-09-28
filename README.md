@@ -39,7 +39,8 @@ The primary command that will more likely do everything you need:
 authy-user-client dump
 ```
 
-1. Retrieve the Authy ID from a country code and phone number.
+1. Retrieve the Authy ID from a country code and phone number, creating
+   a new Authy account if necessary.
 1. Register a new Authy device for that account using the selected
    method (push, call or SMS).
 1. Retrieve all the apps registered for that account and for each of
@@ -57,6 +58,15 @@ authy-user-client check-user-status <country-code> <phone-number>
 
 This will give you the Authy ID for the given phone number if
 registered.
+
+### Create a new user
+
+```sh
+authy-user-client create-user <email> <country-code> <phone-number>
+```
+
+If the user didn't already have an Authy ID during the previous check,
+you need to create it first with this command.
 
 ### Start device registration
 
@@ -158,7 +168,7 @@ requests that require we send those 3 OTPs.
 ### Check a Authy user status
 
 ```js
-await authy.checkUserStatus({ country_code: '1', phone_number: '1234567890' })
+await authy.checkUserStatus({ country_code: '1', cellphone: '1234567890' })
 ```
 
 ```json
@@ -166,6 +176,34 @@ await authy.checkUserStatus({ country_code: '1', phone_number: '1234567890' })
   "force_ott": false,
   "message": "active",
   "devices_count": 42,
+  "authy_id": 111111111,
+  "success": true
+}
+```
+
+Or if the user doesn't exist yet:
+
+```json
+{
+  "force_ott": false,
+  "message": "new",
+  "success": true
+}
+```
+
+### Create a new user
+
+```js
+await authy.createUser({
+  email: 'example@example.com',
+  country_code: '1',
+  cellphone: '1234567890'
+})
+```
+
+```json
+{
+  "message": "Account was created.",
   "authy_id": 111111111,
   "success": true
 }

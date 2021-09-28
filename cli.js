@@ -10,6 +10,7 @@ const doc = `
 Usage:
   authy-user-client dump
   authy-user-client check-user-status <country-code> <phone-number>
+  authy-user-client create-user <email> <country-code> <phone-number>
   authy-user-client registration start <authy-id> (push | call | sms)
   authy-user-client registration complete <pin>
   authy-user-client devices list
@@ -41,7 +42,17 @@ async function saveState (state) {
 async function checkUserStatus (countryCode, phoneNumber) {
   const res = await authy.checkUserStatus({
     country_code: countryCode,
-    phone_number: phoneNumber
+    cellphone: phoneNumber
+  })
+
+  console.log(JSON.stringify(res, null, 2))
+}
+
+async function createUser (email, countryCode, phoneNumber) {
+  const res = await authy.createUser({
+    email,
+    country_code: countryCode,
+    cellphone: phoneNumber
   })
 
   console.log(JSON.stringify(res, null, 2))
@@ -152,15 +163,16 @@ async function sync () {
 
 async function dump () {
   const countryCode = await prompt({ type: 'number', message: 'Country code:', initial: 1, min: 1 })
-  const phoneNumber = prompt({ type: 'number', name: 'phoneNumber', message: 'Phone number:', validate: value => value !== '' })
+  const phoneNumber = await prompt({ type: 'number', name: 'phoneNumber', message: 'Phone number:', validate: value => value !== '' })
 
-  const status = await authy.checkUserStatus({ country_code: countryCode, phone_number: phoneNumber })
+  const status = await authy.checkUserStatus({ country_code: countryCode, cellphone: phoneNumber })
+  let authyId = status.authy_id
 
-  if (!status.authy_id) {
-    throw new Error('Unknown phone number')
+  if (!authyId) {
+    const email = await prompt({ type: 'text', message: 'Email:' })
+    const registration = await authy.createUser({ email, country_code: countryCode, cellphone: phoneNumber })
+    authyId = registration.authy_id
   }
-
-  const authyId = status.authy_id
 
   saveState({ authy_id: authyId })
 
@@ -206,6 +218,8 @@ module.exports = async function cli (argv) {
       return dump()
     case opts['check-user-status']:
       return checkUserStatus(opts['<country-code>'], opts['<phone-number>'])
+    case opts['create-user']:
+      return createUser(opts['<email>'], opts['<country-code>'], opts['<phone-number>'])
     case opts.registration && opts.start:
       return startRegistration(opts['<authy-id>'], ['push', 'call', 'sms'].find(via => opts[via]))
     case opts.registration && opts.complete:

@@ -84,8 +84,14 @@ function api (opts) {
 
 const checkUserStatus = api({
   baseUrl,
-  url: p => `/users/${p.country_code}-${p.phone_number}/status`,
+  url: p => `/users/${p.country_code}-${p.cellphone}/status`,
   search: ['api_key']
+})
+
+const createUser = api({
+  baseUrl,
+  url: '/users/new',
+  body: ['api_key', 'locale', 'email', 'cellphone', 'country_code']
 })
 
 const startRegistration = api({
@@ -136,6 +142,7 @@ module.exports = {
   getOtp,
   getOtps,
   checkUserStatus,
+  createUser,
   listDevices,
   deleteDevice,
   enableMultiDevice,
