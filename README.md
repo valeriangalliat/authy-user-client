@@ -43,7 +43,8 @@ authy-user-client dump
 1. Register a new Authy device for that account using the selected
    method (push, call or SMS).
 1. Retrieve all the apps registered for that account and for each of
-   them, show a standard TOTP URL that can be imported in your favorite app.
+   them, show a [standard TOTP URI](https://github.com/google/google-authenticator/wiki/Key-Uri-Format)
+   that can be imported in your favorite app.
 
 If you want more fine-grained control, you can use the following
 individual commands.
