@@ -20,7 +20,7 @@
     "node-fetch": "^2.6.5",
     "prompts": "^2.4.1",
     "rfc-3548-b32": "^0.0.2",
-    "totp-generator": "github:valeriangalliat/totp-generator#date-option",
+    "totp-generator": "^0.0.10",
     "uri-tag": "^1.4.0"
   },
   "devDependencies": {

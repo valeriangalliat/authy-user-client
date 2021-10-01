@@ -29,9 +29,9 @@ function getOtps (secret) {
   const now = Date.now()
 
   return {
-    otp1: totpGenerator(secret, { digits: 7, period: 10, now }),
-    otp2: totpGenerator(secret, { digits: 7, period: 10, now: now + 10_000 }),
-    otp3: totpGenerator(secret, { digits: 7, period: 10, now: now + 20_000 })
+    otp1: totpGenerator(secret, { digits: 7, period: 10, timestamp: now }),
+    otp2: totpGenerator(secret, { digits: 7, period: 10, timestamp: now + 10_000 }),
+    otp3: totpGenerator(secret, { digits: 7, period: 10, timestamp: now + 20_000 })
   }
 }
 
