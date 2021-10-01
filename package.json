@@ -12,7 +12,8 @@
   "bin": "authy-user-client",
   "repository": "valeriangalliat/authy-user-client",
   "scripts": {
-    "lint": "standard --fix"
+    "lint": "standard --fix",
+    "test": "ava test.js"
   },
   "dependencies": {
     "debug": "^4.3.2",
@@ -24,6 +25,7 @@
     "uri-tag": "^1.4.0"
   },
   "devDependencies": {
+    "ava": "^3.15.0",
     "standard": "^16.0.3"
   }
 }
