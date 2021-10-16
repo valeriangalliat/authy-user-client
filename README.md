@@ -1,4 +1,4 @@
-# Authy user client [![npm version](http://img.shields.io/npm/v/authy-user-client.svg?style=flat-square)](https://www.npmjs.org/package/authy-user-client)
+# Authy User Client [![npm version](http://img.shields.io/npm/v/authy-user-client.svg?style=flat-square)](https://www.npmjs.org/package/authy-user-client)
 
 > Access your Authy TOTP secrets! 🔐
 
@@ -369,7 +369,7 @@ There's more fields in there, just quoted those for example.
 for the official Authy API, for services to provide 2FA to their users
 through Authy.
 
-In contrast, **Authy user client** is meant to be used by the users
+In contrast, **Authy User Client** is meant to be used by the users
 themselves, to manage their Authy account from the CLI, without having
 to install any of the Authy apps, in a way that opens all the data and
 makes it easy to use the Authy secrets with any standard TOTP provider
